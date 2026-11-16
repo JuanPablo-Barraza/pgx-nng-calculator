@@ -11,7 +11,7 @@ editor: source
 
 ## Notación
 
-Para construir esta tabla de contingencia consideramos el eje de la exposición a aquellos sujetos de estudio que portan o no el polimorfismo o farmacogén de interés (todos están tomando el medicamento de estudio) y el eje de la enfermedad, que clasifica a los sujetos según presentaron o no la reacción adversa. Se construye con la notación de Walker la siguiente tabla.
+Para construir esta tabla de contingencia consideramos el eje de la exposición a aquellos sujetos de estudio que portan o no el polimorfismo o farmacogén de interés (todos están tomando el medicamento de estudio) y el eje de la enfermedad, que clasifica a los sujetos según presentaron o no la reacción adversa. Se construye con la notación de Walker (1) la siguiente tabla.
 
 |               | Con reacción adversa | Sin reacción adversa | Total |
 |---------------|----------------------|----------------------|-------|
@@ -23,8 +23,51 @@ Para construir esta tabla de contingencia consideramos el eje de la exposición 
 
 ## Método
 
+Para calcular el NNG recordemos que esta es una medida que se desprende de la
+relación entre 2 medidas de frecuencia en la escala aditiva (restando la primera 
+con la segunda), es decir una medida de impacto (2).
+
+La $\text{IA}_e$ representa la proporción de los portadores que presentaron la reacción adversa.
+
+$$
+\text{IA}_e = \frac{x_1}{N_1}
+$$
+Y la $\text{IA}_0$ la incidencia en los no portadores.
+
+$$
+\text{IA}_0 = \frac{x_0}{N_0}
+$$
+La relación que buscamos se encuentra en una escala aditiva, por lo que al restar
+$\text{IA}_0$ a $\text{IA}_e$ obtenemos la diferencia de sus riesgos o RD (por sus siglas en inglés).
+
+$$
+\text{RD} = \text{IA}_e - \text{IA}_0
+$$
+Al obtener el inverso del RD obtenemos el Number Needed to Treat que se interpretaría como
+"el número de sujetos que es necesario tratar con el medicamento en evaluación para conseguir el beneficio en 1 persona más que en el grupo control (placebo, no-expuesto, o control activo)" (3). En este caso esta medida nos permite responder la pregunta ¿A cuántos portadores del polimorfismo hay que dar un tratamiento alternativo para evitar una reacción adversa?
+
+$$
+\text{NNT} = \frac{1}{\text{RD}}
+$$
+Para transformar el NNT en el NNG necesitamos relacionarlo con la fracción de pacientes que portan el polimorfismo asociado a la reacción adversa es decir $p$ y ¿Por qué? porque los portadores son únicamente una fracción de todos los genotipados, así que para encontrar a cada uno se requiere genotipar $1/p$ pacientes. 
+
+$$
+p = \frac{N_1}{N}
+$$
+Una vez conociendo esto podremos determinar NNG, que nos permite responder la pregunta: ¿A cuántos pacientes hay que genotipar para evitar una reacción? 
+
+
+$$
+\text{NNG} = \frac{\text{NNT}}{p}
+$$
+Debido a lo anterior un polimorfismo poco frecuente genera un valor de $\text{NNG}$ más grande incluso si la prueba predice bien la reacción adversa, porque la proporción de portadores es pequeña.
+
 ## Resultados
 
 ## Interpretación
 
 ## Referencias
+
+1. Walker AM. Observation and inference: an introduction to the methods of epidemiology. Chestnut Hill, MA: Epidemiology Resources Inc; 1991. 173 p.
+2. Tonk ECM, Gurwitz D, Maitland-van der Zee AH, Janssens ACJW. Assessment of pharmacogenetic tests: presenting measures of clinical validity and potential population impact in association studies. *Pharmacogenomics J*. julio de 2017;17(4):386-92. doi:[10.1038/tpj.2016.34](https://doi.org/10.1038/tpj.2016.34)
+3. de Abajo Iglesias FJ. Tratado de Farmacoepidemiología y Farmacovigilancia. Volumen I: Farmacoepidemiología - Volumen II: Farmacovigilancia [Internet]. Primera edición. Fernández Antón E, Alonso Martínez G, editores. España: Editorial Universidad de Alcalá; 2026 [citado 12 de septiembre de 2026]. 1260 p. Disponible en: <https://publicaciones.uah.es/colecciones/libro/?id=2344>
