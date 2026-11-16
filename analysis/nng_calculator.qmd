@@ -2,12 +2,18 @@
 title: "¿A cuántos pacientes hay que genotipar para evitar una reacción adversa?"
 subtitle: "Estimación a partir de una tabla de contingencia 2x2 en un estudio de seguridad"
 author: "Barraza Juan Pablo"
-format: html
+format:
+  html:
+    embed-resources: true
 lang: es
 editor: source
 ---
 
 ## Contexto
+
+Este documento adopta el papel de una organización de investigación por contrato (CRO) responsable de un estudio de seguridad que forma parte del plan de gestión de riesgos de un medicamento X. El medicamento se asocia con una reacción adversa de mecanismo farmacogenético: los pacientes que portan una variante genética tienen mayor riesgo de presentarla.
+
+La pregunta que se busca responder es si conviene genotipar a los pacientes antes de prescribir. Para ello se calcula el *Number Needed to Genotype* (NNG), una medida de impacto que indica a cuántos pacientes hay que genotipar para evitar una reacción adversa (2), a partir de una tabla de contingencia 2x2.
 
 ## Notación
 
@@ -64,7 +70,56 @@ Debido a lo anterior un polimorfismo poco frecuente genera un valor de $\text{NN
 
 ## Resultados
 
+Los conteos son una reconstrucción para 1 000 pacientes a partir de los porcentajes publicados por Tonk et al. (2) para abacavir e hipersensibilidad diagnosticada clínicamente; se usan solo como ilustración.
+
+```{r}
+# Datos: las cuatro celdas que se capturan en el estudio
+x1 <- 41    # portadores con reacción adversa
+N1 <- 67    # total de portadores
+x0 <- 44    # no portadores con reacción adversa
+N0 <- 933   # total de no portadores
+```
+
+```{r}
+# Totales y tabla de contingencia 2x2
+N <- N1 + N0   # total de pacientes
+x <- x1 + x0   # total de pacientes con reacción adversa
+tabla <- matrix(c(x1, N1 - x1, x0, N0 - x0), nrow = 2, byrow = TRUE,
+                dimnames = list(c("Portadores", "No portadores"),
+                                c("Con reacción", "Sin reacción")))
+tabla
+```
+
+```{r}
+# Riesgos y diferencia de riesgos
+IAe <- x1 / N1    # incidencia acumulada en portadores
+IA0 <- x0 / N0    # incidencia acumulada en no portadores
+RD  <- IAe - IA0  # diferencia de riesgos
+c(IAe = IAe, IA0 = IA0, RD = RD)
+```
+
+```{r}
+# NNT y NNG, redondeados hacia arriba a personas completas
+NNT <- 1 / RD    # número necesario a tratar
+p   <- N1 / N    # frecuencia de portadores
+NNG <- NNT / p   # número necesario a genotipar
+c(NNT = ceiling(NNT), NNG = ceiling(NNG))
+```
+
+```{r}
+# Prueba de ji cuadrada: asociación entre la variante y la reacción
+chisq.test(tabla)
+```
+
 ## Interpretación
+
+En el ejemplo, el riesgo de presentar la reacción adversa fue de 61.2 % en los portadores y de 4.7 % en los no portadores, una diferencia de 56.5 puntos porcentuales. La prueba de ji cuadrada indica que esta asociación entre la variante y la reacción no se explica por el azar (p < 0.001).
+
+El NNT fue de 2 y el NNG de 27: por cada 27 pacientes genotipados, alrededor de 2 resultan portadores y reciben un tratamiento alternativo, con lo que se evita una reacción adversa (2). Ambos valores coinciden con los publicados por Tonk et al. (2), lo que valida el cálculo.
+
+El NNG es una medida comparativa, entre portadores y no portadores, que debe acompañarse del tiempo de observación y se expresa en números naturales, redondeando hacia arriba (3). Cuanto menor es su valor, más eficiente resulta genotipar.
+
+**Limitaciones.** Los conteos son una reconstrucción ilustrativa y no datos reales. El cálculo supone que los portadores que reciben el tratamiento alternativo tendrían el riesgo de los no portadores. Además, de Abajo describe el NNG como el número de personas a genotipar para identificar a las susceptibles (3), mientras que aquí se sigue la definición de Tonk et al.: evitar una reacción adversa (2).
 
 ## Referencias
 
