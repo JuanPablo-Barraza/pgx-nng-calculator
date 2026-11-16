@@ -1,0 +1,20 @@
+---
+title: "¿A cuántos pacientes hay que genotipar para evitar una reacción adversa?"
+subtitle: "Estimación a partir de una tabla de contingencia 2x2 en un estudio de seguridad"
+author: "Barraza Juan Pablo"
+format: html
+lang: es
+editor: source
+---
+
+## Contexto
+
+## Notación
+
+## Método
+
+## Resultados
+
+## Interpretación
+
+## Referencias
