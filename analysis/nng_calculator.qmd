@@ -11,6 +11,16 @@ editor: source
 
 ## Notación
 
+Para construir esta tabla de contingencia consideramos el eje de la exposición a aquellos sujetos de estudio que portan o no el polimorfismo o farmacogén de interés (todos están tomando el medicamento de estudio) y el eje de la enfermedad, que clasifica a los sujetos según presentaron o no la reacción adversa. Se construye con la notación de Walker la siguiente tabla.
+
+|               | Con reacción adversa | Sin reacción adversa | Total |
+|---------------|----------------------|----------------------|-------|
+| Portadores    | $x_1$                | $N_1 - x_1$          | $N_1$ |
+| No portadores | $x_0$                | $N_0 - x_0$          | $N_0$ |   
+| Total         | $x$                  | $N-x$                |  $N$  |
+
+
+
 ## Método
 
 ## Resultados
