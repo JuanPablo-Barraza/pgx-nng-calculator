@@ -1,5 +1,7 @@
 # pgx-nng-calculator
 
+**Autor:** Juan Pablo Barraza. Alumno de Maestría en Bioinformática, UNIR México. Noviembre de 2026.
+
 Calculadora del *Number Needed to Genotype* (NNG) a partir de una tabla de contingencia 2x2, en el contexto de un estudio de seguridad de farmacovigilancia.
 
 ## Propósito
@@ -18,7 +20,7 @@ Estimar a cuántos pacientes hay que genotipar para evitar una reacción adversa
 |---|---|
 | `analysis/` | Documento Quarto con la explicación y el código |
 | `data/` | Descripción de los datos de ejemplo |
-| `results/` | Reporte generado en HTML |
+| `results/` | Reporte generado en HTML (descargar el archivo y abrirlo en un navegador) |
 
 ## Instrucciones de uso
 
