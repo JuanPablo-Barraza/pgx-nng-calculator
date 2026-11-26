@@ -1,7 +1,7 @@
 # Datos (`data/`)
 
 ## Propósito
-Esta carpeta contiene los datos de ejemplo utilizados por la calculadora del **NNG** (*Número Necesario para Dañar*).
+Esta carpeta contiene los datos de ejemplo utilizados por la calculadora del **NNG** (*Number Needed to Genotype*, número necesario a genotipar).
 
 ## Descripción de los datos
 * **`ejemplo_abacavir.csv`**: Contiene los conteos de una tabla de contingencia 2x2 (portadores y no portadores de la variante genética, con reacción adversa y total).
